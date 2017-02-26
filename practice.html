@@ -1,0 +1,96 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+</head>
+<style type="text/css">
+    #all{
+    	width: 1000px;
+    	height: 1000px;
+    }
+	#huatu{
+		width: 400px;
+		height: 400px;
+		border-radius: 1px;
+		border-color: red;
+		border-style: solid;
+		margin: 20px auto 500px 500px;
+		position: relative;
+	}
+	#color{
+		width: 60px;
+		height: 30px;
+		position: absolute;
+		margin-left: 30px;
+		margin-top: 30px;
+
+	}
+	
+	
+	#range{
+		width: 100px;
+		height: 30px;
+		position: absolute;
+		right: 300px;
+		top:100px;
+	}
+	#line{
+         background:black;
+            width:100px;
+            height:5px;
+            position:absolute;
+            right:310px;
+            top:150px;
+        }
+
+</style>
+<body>
+<div id="all">
+<canvas id="huatu" >画板</canvas> 
+<input type="color" name="color" id="color">
+<div id="line"></div>
+<input type="range" name="range" min="1" max="10" id="range">
+<div id="eraser"></div>
+</div>
+<script type="text/javascript">
+	var canvas=document.getElementById("huatu");
+	var cxt=canvas.getContext("2d");
+	var color=document.getElementById("color");
+	var line=document.getElementById("line");
+	var range=document.getElementById("range");
+    range.onchange=function(){
+    	line.style.height=range.value+"px";
+    }
+	color.onchange=function(){
+		line.style.background=color.value;
+	}
+	  var flag;
+    canvas.onmousedown= function (e) {
+        var mouseX= e.pageX-this.offsetLeft;
+        var mouseY= e.pageY-this.offsetTop;
+        flag=true;
+        cxt.beginPath();
+        cxt.lineWidth=range.value;
+        cxt.strokeStyle=color.value; 
+        cxt.moveTo(mouseX,mouseY);
+    };
+    canvas.onmousemove= function (e) {
+        var mouseX= e.pageX-this.offsetLeft;
+        var mouseY= e.pageY-this.offsetTop;
+        if(flag){
+            
+            cxt.lineTo(mouseX,mouseY);
+            cxt.stroke();
+        }
+    }
+    canvas.onmouseup= function (e) {
+        flag=false;
+    }
+
+</script>
+</body>
+</html>
+
+
+
