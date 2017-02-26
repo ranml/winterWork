@@ -1,0 +1,142 @@
+/**清除默认的样式*/
+*{
+    padding:0;
+    margin: 0;
+}
+li{
+    list-style: none;
+}
+.content{
+
+    width: 980px;
+    margin: 0 auto;
+    margin-top: 20px;
+}
+.clearFix{
+    zoom: 1;
+}
+
+.clearFix:after{
+    content: "";
+    clear: both;
+    display: block;
+}
+/*输入框 start*/
+input{
+    display: block;
+    margin-top: 20px;
+    width: 100%;
+    height: 34px;
+    float: left;
+    padding: 6px 12px;
+    font-size: 14px;
+    line-height: 1.42857143;
+    color: #555;
+    background-color: #fff;
+    background-image: none;
+    border: 1px solid #ccc;
+    border-radius: 4px;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075);
+    -webkit-transition: border-color ease-in-out .15s,-webkit-box-shadow ease-in-out .15s;
+    -o-transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+    transition: border-color ease-in-out .15s,box-shadow ease-in-out .15s;
+}
+input:last-child{
+    margin-left: 20px;
+}
+input:focus{
+    border-color: #66afe9;
+    outline: 0;
+    -webkit-box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+    box-shadow: inset 0 1px 1px rgba(0,0,0,.075), 0 0 8px rgba(102,175,233,.6);
+}
+.warning{
+    color: #a94442;
+    background-color: #f2dede;
+    padding: 15px;
+    margin: 10px 0 20px 20px;
+    border: 1px solid transparent;
+    border-color: #ebccd1;
+    border-radius: 4px;
+}
+
+/*输入框 end*/
+.list{
+    margin-top:20px;
+}
+.list li{
+    padding: 20px;
+    margin-bottom: -1px;
+    border: 1px solid #eaeaea;
+    position: relative;
+}
+.list img{
+    width: 220px;
+    height: 150px;
+}
+
+.list-con h2{
+    font-size: 18px;
+    line-height: 24px;
+    font-weight: bold;
+    color: #555;
+    cursor: pointer;
+    display: inline-block;
+    float: left;
+}
+.list-con a{
+    color: #555;
+    text-decoration: none;
+}
+.list-con h2 span{
+    color: #FF5E52;
+}
+.list-con h2 a:hover,
+.list-con h2 span:hover {
+    color: #45B6F7;
+}
+.list-con .date{
+    font-size: 12px;
+    color: #999;
+    float: right;
+}
+.list-con .date span{
+    vertical-align: middle;
+}
+.list-con i{
+    display: inline-block;
+    height: 12px;
+    width: 12px;
+    vertical-align: middle;
+    margin-right: 10px;
+}
+.list-con i:first-child{
+    background: url(../img/date1.png) 0 0 no-repeat;
+}
+
+.list-con p{
+    margin-top: 10px;
+}
+
+/*文章内容 start*/
+.box h1{
+    text-align: center;
+    font-size: 26px;
+    line-height: 36px;
+    height: 40px;
+    border-bottom: 1px solid #eee;
+}
+.box .article{
+    margin-top: 20px;
+}
+.box .article img{
+    clear: both;
+    display: block;
+    margin:auto;
+}
+.box .article p{
+    margin-top: 20px;
+    text-indent: 1em;
+}
+/*文章内容 end*/
