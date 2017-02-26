@@ -1,0 +1,63 @@
+ 
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>轮播</title>
+    <style>
+    #slide{
+        width: 480px;
+        height: 270px;
+        margin: 0 auto;
+        position: relative;
+        margin-top: 100px;
+    }
+        #slide a{
+            width: 480px;
+            height: 270px;
+            position: absolute;
+            top: 0;
+            left: 0;
+        }
+         #slide img{
+             display: block;
+         }
+    </style>
+</head>
+<body>
+    <div id="slide">
+        <a href="#"><img src="images/1.png" alt=""></a>
+        <a href="#"><img src="images/2.jpg" alt=""></a>
+        <a href="#"><img src="images/3.jpg" alt=""></a>
+        <a href="#"><img src="images/4.jpg" alt=""></a>
+        <a href="#"><img src="images/5.jpg" alt=""></a>
+
+    
+    </div>
+
+    <script>
+        // auto();
+        //设置定时器
+        setInterval(auto, 3000);
+        var index = 1;
+        function auto(){
+            //获取元素，html5中的内容，得到的a为一个数组
+            var a = document.querySelectorAll("#slide a");
+            //如果index超过了数组的长度（图片的长度），index设置为1，即设置第一张图片
+            if(index == a.length+1){
+                index = 1; 
+            }
+            // console.log(index)
+
+            //每一次自动播放时，将z-index设置为0
+            for(var i=0; i<a.length; i++){
+                a[i].style.zIndex = 0;
+            }
+            //设置图片的z-index
+            a[index-1].style.zIndex = index;
+            // index自加
+            index++;
+        }
+    </script>
+</body>
+</html>
