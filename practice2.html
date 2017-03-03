@@ -1,0 +1,198 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+	<title></title>
+</head>
+<style type="text/css">
+.clearFix{
+	zoom: 1;
+}
+
+.clearFix:after{
+	content: "";
+	clear: both;
+	display: block;
+}
+#all{
+	width: 650px;
+	margin: 0 auto;
+}
+#huatu{
+	float: left;
+	border: 1px solid #000;
+	border-radius: 5px;
+}
+.controll{
+	float: left;
+	margin: 50px 0 0 20px;
+}
+.controll .item{
+	margin-top: 20px;
+}
+#color{
+	width: 60px;
+	height: 30px;	
+}
+.pen{
+	float: left;
+}
+.r{
+	float: right;
+}
+#range{
+	width: 100px;
+	height: 30px;
+
+}
+#line{
+	background:black;
+	width:90px;
+	height:1px;
+	position: absolute;
+	left: 0;
+	top: 10px;
+}
+.line-box{
+	width: 110px;
+	position: relative;
+	height: 20px;
+}
+.line-box span{
+	position: absolute;
+	top: 0;
+	right: 0;
+}
+#clear{
+	color: #fff;
+    background-color: #d9534f;
+    border-color: #d43f3a;
+	margin-top: 5px;
+    margin-bottom: 5px;
+	display: inline-block;
+    padding: 6px 12px;
+    margin-bottom: 0;
+    font-size: 14px;
+    font-weight: 400;
+    line-height: 1.42857143;
+    text-align: center;
+    white-space: nowrap;
+    vertical-align: middle;
+    -ms-touch-action: manipulation;
+    touch-action: manipulation;
+    cursor: pointer;
+    -webkit-user-select: none;
+    -moz-user-select: none;
+    -ms-user-select: none;
+    user-select: none;
+    background-image: none;
+    border: 1px solid transparent;
+    border-radius: 4px;
+	margin-left:  80px;
+}
+
+#clear:hover{
+	color: #fff;
+    background-color: #c9302c;
+    border-color: #ac2925;
+}
+/*
+#all{
+	
+}
+
+#huatu{
+	float: left;
+	border: 1px solid #000;
+}
+
+.*/
+</style>
+<body>
+<div id="all" class="clearFix">
+	<canvas id="huatu">画板</canvas> 
+	<div class="controll">
+		<div class="item">
+			<label for="color">画笔颜色：</label>
+			<input type="color" name="color" id="color">
+		</div>
+		<div class="item clearFix">
+			<label for="range" class="pen">画笔大小：</label>
+			<div class="r">
+				<input type="range" name="range" min="1" value="1" max="10" id="range">
+				<div class="line-box clearFix">
+					<div id="line"> </div> 
+					<span id="num">1</span>
+				</div>
+			</div>
+		</div>
+		
+		<div class="item">
+			<button id="clear">清除画布</button>
+		</div>
+	</div>
+</div>
+<script type="text/javascript">
+	var canvas=document.getElementById("huatu");
+
+	//设置画板的宽高
+	canvas.width = 400;
+	canvas.height = 400;
+
+	var cxt=canvas.getContext("2d");
+	var color=document.getElementById("color");
+	console.log(color.value);
+	var line=document.getElementById("line");
+	var range=document.getElementById("range");
+	var colorX = "#000";
+
+	var clear = document.getElementById("clear");
+
+	//清空画布
+	clear.onclick = function(){
+		cxt.clearRect(0, 0, 400, 400)
+	}
+    range.onchange=function(){
+		console.log(range.value);
+    	line.style.height = range.value+"px";
+		line.style.top = Math.ceil((20-range.value)/2)+"px";
+		document.getElementById("num").innerText = range.value;//旁边小功能区得属性
+    }
+	color.onchange=function(){
+		cxt.strokeStyle = color.value;
+		line.style.background = color.value;
+		
+	}
+	
+	var flag;//设置一个标志位
+    canvas.onmousedown= function (e) {
+
+        var mouseX= e.pageX-this.offsetLeft;//距离左边的距离
+        var mouseY= e.pageY-this.offsetTop;//距离上面的距离
+       
+        flag=true;
+        cxt.beginPath();
+        cxt.lineWidth=range.value;
+        cxt.moveTo(mouseX,mouseY);
+    };
+    canvas.onmousemove= function (e) {
+        var mouseX= e.pageX-this.offsetLeft;
+        var mouseY= e.pageY-this.offsetTop;
+      
+        if(flag){
+            
+            cxt.lineTo(mouseX,mouseY);
+            cxt.stroke();
+        }
+    }
+    canvas.onmouseup= function (e) {
+        flag=false;
+        cxt.closePath();
+    }
+
+</script>
+</body>
+</html>
+
+
+
